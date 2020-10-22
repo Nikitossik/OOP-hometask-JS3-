@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Банкоматы</title>
+</head>
+<body>
+    <script>
+        function BankAccount(number, code){
+            this.number = number;
+            this.name = 'John';
+            this.surname = 'Pilton';
+            this.code = code;
+            this.account = '1000';
+            this.bank = 'PrivatBank';
+        };
+
+        function CashMachine(number){
+            this.number = number;
+            this.check = function(card){
+                alert(bank.some((element) => element.number == card.number && element.code == card.code));
+            }
+        }
+
+        let card = new BankAccount('5674 3094 2783 1285', '0000'), 
+            bank = [new BankAccount('4593 5483 3403 2904','1111'), new BankAccount('5674 3094 2783 1285','0000')];
+
+        let machines = [new CashMachine(1), new CashMachine(2)];
+
+        machines[0].check(card);
+        machines[1].check(card);
+
+
+
+    </script>
+</body>
+</html>

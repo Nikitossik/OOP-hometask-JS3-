@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Устаревающая страница</title>
+    <style>
+        *{
+            margin: 0;  
+            padding: 0;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        span{
+            text-align: center;
+        }
+        #text{
+            font-size: 4em;
+        }
+        #time{
+            font-size: 3em;
+        }
+        
+    </style>
+</head>
+<body>
+    <span id="text">Вы находитесь на странице</span> 
+    <span id="time"></span>
+    <script>
+        let text = document.querySelector('#text'), time = document.querySelector('#time'), s = 0, m = 0;
+
+        function print(){
+            s++;
+
+            if (m == 0) time.innerHTML = s + ' сек';
+            else if (m >= 2) {
+                time.innerHTML = '';
+                text.innerHTML = 'Страница устарела!';
+            }
+            else time.innerHTML = m + ' мин ' +  s + ' сек';
+
+            if (s == 59) {
+                s = 0;
+                m++;
+            }
+            
+
+            setTimeout(print, 1000);
+        }
+        print();
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Превью</title>
+</head>
+<body>
+    <script>
+        function check(str){
+            if (str.length > 20) {
+                if (str.charAt(19) == ' ') return str.substr(0,19) + '...';
+                else {
+                    return str.substr(0, str.substr(0,20).lastIndexOf(' ')) + '...';
+                }
+            }
+        }
+
+        alert(check(prompt('Введите строку: ')));
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пиковая дама</title>
+</head>
+<body>
+    <script>
+        function take(num){
+            if (num == 0){
+                let item = cards[0];
+                cards.shift();
+                return item;
+            }
+            else if (num == 1){
+                return cards.splice(Math.floor(cards.length / 2), 1)[0];
+            }
+            else if (num == 2){
+                return cards.pop();
+            }
+        }
+
+        Array.prototype.shuffle = function(){
+            let rand, temp;
+            for (let i = 0; i < this.length; i++) {
+                rand = Math.floor(Math.random() * (i + 1));
+                temp = this[rand];
+                this[rand] = this[i];
+                this[i] = temp;
+            }
+            return this;
+        }  
+
+        let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"], items = [];
+
+        let human_req, ai_req;
+ 
+        while(true){
+            human_req = +prompt('Введите, откуда будете брать карту(0 - начало, 1 - середина, 2 - конец):');
+            ai_req = Math.floor(Math.random() * 3);
+
+            let human_taken_card = take(human_req), ai_taken_card = take(ai_req);
+
+            items.push(human_taken_card);
+            alert(`Вы взяли ${human_taken_card}, колода: ${items}`)
+
+            items.push(ai_taken_card);
+            alert(`Компьютер взял ${ai_taken_card}, колода: ${items}`);
+
+            if (human_taken_card == 'Q'){
+                alert('Вы выиграли!');
+                break;
+            }
+            else if (ai_taken_card == 'Q'){
+                alert('Вы проиграли!');
+                break;
+            }
+
+            cards.shuffle();
+        }
+    </script>
+</body>
+</html>

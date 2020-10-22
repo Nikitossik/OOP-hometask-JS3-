@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Песочные часы</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #time{
+            position: absolute;
+            white-space: nowrap;
+            left: 50%;
+            top:50%;
+            transform: translate(-50%, -50%);
+            font-size: 4em;
+        }
+    </style>
+</head>
+<body>
+
+    <span id='time'></span>
+    <script>
+        function print(time){
+            text.innerHTML = time;
+            time--;
+            if (time < 0) text.innerHTML = 'Ваше время истекло!';
+            setTimeout(print, 1000, time);
+        }
+
+        let sand = +prompt('Секунды: '), text = document.querySelector('#time');
+
+        print(sand);
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат с ботом</title>
+</head>
+<body>
+    <script>
+        let js_arr = [
+            'В JavaScript есть много методов для работы со строкой',
+            'Массивы в JavaScript похожи на объекты',
+            'В JS есть функциональное и прототипированое наследования'
+        ], html_arr = [
+            'В HTML существуют парные и непарные теги',
+            'В HTML существуют теги физического и логического форматирования',
+            'Теги <html>, <head>, <body> определяют страницу'
+        ], php_arr = [
+            'Синтаксис PHP подобен синтаксису языка Си',
+            'Пока существуют 7 версий PHP',
+            'Скриптовый язык общего назначения, интенсивно применяемый для разработки веб-приложений'
+        ]; 
+        let bot = {
+            sayHi(){
+                return confirm('Привет, поговорим?');
+            },
+            answer(string){
+                let js = /JavaScript/gi, php = /php/gi, html = /html/gi, index; 
+                if (string.search(js) != -1){
+                    index = Math.floor(Math.random() * js_arr.length);
+                    alert(js_arr[index]);
+                }
+                if (string.search(php) != -1){
+                    index = Math.floor(Math.random() * php_arr.length);
+                    alert(php_arr[index]);
+                }
+                if (string.search(html) != -1){
+                    index = Math.floor(Math.random() * html_arr.length);
+                    alert(html_arr[index]);
+                }
+            }
+        }
+
+        let q = '';
+
+        if (bot.sayHi()) {
+            while(true){
+                q = prompt('О чём поговорим?');
+                bot.answer(q);
+            }
+        }
+
+    </script>
+</body>
+</html>

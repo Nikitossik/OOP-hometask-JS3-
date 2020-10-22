@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Иерархия объектов 1-й вариант</title>
+</head>
+<body>
+    <script>
+        function Animal(name) {
+            this.name = name;
+            this.speed = 0; 
+        } 
+
+        Animal.prototype.run = function() {
+            alert(this.name + " передвигается!") 
+        } 
+
+        function Cat(name) {
+            Animal.apply(this, arguments); 
+        }
+        Cat.prototype = Object.create(Animal.prototype); Cat.prototype.constructor = Cat;
+
+        function Dog(name) {
+            Animal.apply(this, arguments); 
+        } 
+        Dog.prototype = Object.create(Animal.prototype); Dog.prototype.constructor = Dog;
+
+        function Chicken(name) {
+            Animal.apply(this, arguments); 
+        }
+        Chicken.prototype = Object.create(Animal.prototype); Chicken.prototype.constructor = Chicken;
+
+        function Snake(name) {
+            Animal.apply(this, arguments); 
+        }
+        Snake.prototype = Object.create(Animal.prototype); Snake.prototype.constructor = Snake;
+
+        function Elephant(name) {
+            Animal.apply(this, arguments); 
+        }
+        Elephant.prototype = Object.create(Animal.prototype); Elephant.prototype.constructor = Elephant;
+
+        Cat.prototype.run = function() {
+            Animal.prototype.run.apply(this); 
+            alert( this.name + " крадется!" ); 
+        };
+        Dog.prototype.run = function() {
+            Animal.prototype.run.apply(this); 
+            alert( this.name + " виляет хвостом!" ); 
+        }; 
+        Chicken.prototype.run = function() {
+            Animal.prototype.run.apply(this); 
+            alert( this.name + " летает!" ); 
+        }; 
+        Snake.prototype.run = function() {
+            Animal.prototype.run.apply(this); 
+            alert( this.name + " ползет!" ); 
+        }; 
+        Elephant.prototype.run = function() {
+            Animal.prototype.run.apply(this); 
+            alert( this.name + " топает!" ); 
+        };  
+
+        let animals = [new Cat('Кошка'), new Dog('Собака'), new Chicken('Петух'), new Snake('Змея'), new Elephant('Слон')];
+
+        for (var i = 0; i < animals.length; i++) animals[i].run();
+    </script>
+</body>
+</html>

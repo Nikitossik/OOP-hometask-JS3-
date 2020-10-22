@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Банкомат</title>
+</head>
+<body>
+    <script>
+        function Card(number, code){
+            this.number = number;
+            this.name = 'John';
+            this.surname = 'Pilton';
+            this.code = code;
+            this.account = '1000';
+            this.bank = 'PrivatBank';
+        };
+
+        let atm = {
+            number: '1',
+            check(card){
+                alert(bank.some((element) => element.number == card.number && element.code == card.code));
+            }
+        };
+
+        let card = new Card('5674 3094 2783 1285', '0000'), bank = [new Card('4593 5483 3403 2904','1111'), new Card('5674 3094 2783 1285','0000'), new Card('5674 3094 2783 1285','0000')];
+
+        atm.check(card);
+    </script>
+</body>
+</html>

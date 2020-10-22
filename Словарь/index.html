@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Словарь</title>
+</head>
+<body>
+    <script>
+        function Dictionary(){
+            let request = '';
+            this.index = Math.floor(Math.random() * 3);
+            this.request = function(word){
+                if (!arguments) return request;
+                else request = word;
+            };
+            this.words = [
+                {'bitter': 'горький', 'sour': 'кислый', 'sweet': 'сладкий', 'spicy': 'острый'},
+                {'sociable': 'общительный', 'stubborn': 'упрямый', 'smart': 'умный', 'cheerful': 'жизнерадостный'},
+                {'windy': 'ветрянно', 'sunny': 'солнечно', 'foggy': 'туманно', 'rainy': 'дождливо'}
+            ];
+            this.wins = 0;
+            this.loses = 0;
+            let mode_type = 'en';
+            this.mode = function(arg){
+                if (!arguments) return mode_type;
+                else {
+                    if (arg != 'ru' && arg != 'en') alert('Не правильно ввёден язык, мы поставим английский)');
+                    else mode_type = arg;
+                }
+            }; 
+            this.showWins = function(){ alert('Угадали:' + this.wins); };
+            this.showLoses = function(){ alert('Не угадали: ' + this.loses); };
+            this.check = function(){
+                if (mode_type == 'en') return this.words[this.index][this.request] ? true : false;
+                else{
+                    for (w in this.words[this.index]){
+                        if (request == w) return true;
+                    }
+                    return false;
+                }
+            };
+            this.printWords = function(){
+                for (var i = 0; i < this.words.length; i++){
+                    for (let word in this.words[i]){
+                        document.write(mode_type == 'en' ? `${word}: ${this.words[i][word]}` : `${this.words[i][word]}: ${word}`);
+                        document.write('<br>');
+                    }
+                    document.write('<br>');
+                }
+            }
+            this.makeQuestion = function(arg){
+                return mode_type == 'en' ? `Как на русском ${arg}?` : `What\'s in english for ${this.words[this.index][arg]}?`;
+            }
+            this.count = function(flag){
+                if (flag) this.wins++;
+                else this.loses++;
+            }
+        }
+
+        let d = new Dictionary();
+        d.mode(prompt('С какого языка переводите? (ru or en) '));
+
+        for (let w in d.words[d.index]){
+            d.request(prompt(d.makeQuestion(w)));
+            d.count(d.check());
+        }
+
+        d.showWins();
+        d.showLoses();
+        d.printWords();
+
+    </script>
+</body>
+</html>

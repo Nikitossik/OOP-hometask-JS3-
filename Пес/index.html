@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пес</title>
+</head>
+<body>
+    <script>
+        function Dog(name, breed, weight) {
+            
+            this.name = name ? name : 'default';
+            this.breed = breed ? breed : 'default';
+            this.weight = weight ? weight : 25;
+            this.speed = 0;
+
+            let maxspeed = this.weight <= 25 ? 4 : 20;
+
+            this.start = function() {this.speed = 1;};
+
+            this.stop = function() {this.speed = 0;};
+
+            this.changeSpeed = function(km){
+
+                if (km >= 0.5 && km <= 2) this.speed += km;
+                else if (km < 0) alert('Отрицательная скорость запрещена!');
+                else alert('Не гоняй так сильно!');
+
+                if (this.speed >= maxspeed) {
+                    this.speed = maxspeed;
+                    alert('Максимальная скорость развита!');
+                }
+
+            };   
+
+            this.bark = function() {
+                alert(this.weight <= 25 ? this.name + " сказал Тяф!" : this.name + " сказал Гав!");
+            };
+
+            this.toString = function(){
+                let str = '';
+                for (prop in this) if (typeof this[prop] !== 'function') str += `${prop}: ${this[prop]} \n`;
+                return str;
+            };
+        }
+
+        let dogs = [];
+
+        dogs[0] = new Dog("Fido", "Mixed", 38);
+        dogs[1] = new Dog("Fluffy", "Poodle", 30);
+        dogs[2] = new Dog("Spot", "Chihuahua", 10);
+
+        for (var i = 0; i < dogs.length; i++){
+            dogs[i].start();
+            dogs[i].changeSpeed(3);
+            dogs[i].changeSpeed(-3);
+            if (dogs[i].weight <= 25) for (var j = 0; j < 2; j++) {
+                dogs[i].changeSpeed(2);
+                alert(dogs[i].speed);
+            }
+            else for (var j = 0; j < 10; j++) {
+                dogs[i].changeSpeed(2);
+                alert(dogs[i].speed);
+            }
+            alert(dogs[i]);
+        }
+
+    </script>
+</body>
+</html>

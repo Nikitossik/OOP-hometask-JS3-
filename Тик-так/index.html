@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тик-так</title>
+</head>
+<body>
+    <script>
+        let tick = true;
+        function ticker(timeout) {
+            stop = Date.now();
+            let diff = (stop - start) / 1000;
+            if (tick) {
+                document.write("Тик ");
+                tick = false;
+            } else {
+                document.write("Так ");
+                tick = true;
+            }
+
+            if (diff >= timeout) clearInterval(t);
+        }
+
+        let t = setInterval(ticker, 1000, +prompt('Введите кол-во секунд: ')), start = Date.now(), stop;
+
+    </script>
+</body>
+</html>

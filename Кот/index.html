@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кот</title>
+</head>
+<body>
+    <script>
+        let cat = {
+            weight: 1,
+            feed(k){
+                this.weight += k;
+                if (this.weight < 10) {
+                    alert('Коту нужно набрать массу!');
+                }
+                else if (this.weight >= 30){
+                   alert('Коту нужно на диету!');
+                   this.diet();
+                }
+            },
+            diet(){
+                this.weight = 5;
+            },
+            toString(){
+                var str = '';
+                for (var i in this) {
+                    if (typeof this[i] !== 'function') str+= `${i}: ${this[i]}\n`;
+                }
+                return str;
+            }
+        }
+
+        alert(cat);
+
+        cat.feed(1);
+        cat.feed(2);
+        cat.feed(13);
+        alert(cat);
+        cat.feed(100);
+        alert(cat);
+        
+    </script>
+</body>
+</html>

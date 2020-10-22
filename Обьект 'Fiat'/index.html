@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiat</title>
+</head>
+<body>
+    <script>
+        let fiat = {
+            make: "Fiat",
+            started: false,
+            fuel: 0,
+            start() {
+                this.started = true;
+            },
+            stop() {
+                this.started = false;
+            },
+            addFuel(amount){
+                this.fuel += amount;
+            },
+            drive() {
+                if (this.started) {
+                    if (this.fuel > 0){
+                        this.fuel--;
+                        alert('Бип!');
+                    }
+                    else alert('Надо подзаправится!');
+                } 
+                else alert("Сначала запустите двигатель!");
+            },
+            toString(){
+                var str = '';
+                for (var i in this) {
+                    if (typeof this[i] !== 'function') str+= `${i}: ${this[i]}\n`;
+                }
+                return str;
+            }
+        };
+
+        alert(fiat);
+
+        fiat.drive();
+        fiat.start();
+        fiat.drive();
+        fiat.addFuel(1);
+        fiat.drive();
+        fiat.drive();
+    </script>
+</body>
+</html>

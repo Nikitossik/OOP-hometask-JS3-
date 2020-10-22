@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гонки собак</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        td{
+            padding: 10px 20px;
+            font-size: 1em;
+        }
+        th{
+            padding: 10px 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <table cellspacing = '0' border = '2'></table>
+    <script>
+        function Dog(name, breed, weight) {
+            
+            this.name = name ? name : 'default';
+            this.breed = breed ? breed : 'default';
+            this.weight = weight ? weight : 25;
+            this.speed = 0;
+            this.left = 5; // Поставил 500 метров, потому, что 5 км - слишком долго бегут
+
+            let maxspeed = this.weight <= 25 ? 4 : 20;
+
+            this.stop = function() {this.speed = 0;};
+
+            this.changeSpeed = function(km){
+
+                if (km >= 0.5 && km <= 2) this.speed += km;
+
+                if (this.speed >= maxspeed) this.speed = maxspeed;
+
+                if (this.left > 0) this.left -= this.speed * 1000 / 3600;
+                else {
+                    this.stop();
+                    // this.left = 0;
+                }
+            };   
+        }
+
+        let t = document.querySelector('table');
+
+        function print(){
+            t.innerHTML = '<tr><th>Имя</th><th>Порода</th><th>Вес</th><th>Скорость</th><th>Осталось до финиша (м):</th></tr>';
+            for (var i = 0; i < dogs.length; i++) {
+                t.innerHTML += `<tr><td>${dogs[i].name}</td><td>${dogs[i].breed}</td><td>${dogs[i].weight}</td><td>${dogs[i].speed}</td><td>${dogs[i].left}</td></tr>`;
+                dogs[i].changeSpeed(0.5 + Math.floor(Math.random() * 1.5));
+            }
+
+            var timeout = setTimeout(print, 1000);
+
+            if (dogs.every((elem) => elem.left <= 0)) clearTimeout(timeout);
+        }
+
+        let dogs = [new Dog("Fido", "Mixed", 38), new Dog("Fluffy", "Poodle", 30), new Dog("Spot", "Bulldog", 26)];
+
+        print();
+    </script>
+</body>
+</html>

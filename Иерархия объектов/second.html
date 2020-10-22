@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Иерархия объектов 2-й вариант</title>
+</head>
+<body>
+    <script>
+        function Transport(name){
+            this._name = name;
+            this.about = function(){
+                alert('Я - ' + this._name);
+            }
+        }
+
+        function Air(name){
+            Transport.apply(this, arguments);
+            let parentAbout = this.about;
+            this.about = function(){
+                parentAbout.call(this);
+                alert('Я - лечу!');
+            }
+        }
+
+        function Water(name){
+            Transport.apply(this, arguments);
+            let parentAbout = this.about;
+            this.about = function(){
+                parentAbout.call(this);
+                alert('Я - плыву!');
+            }
+        }
+
+        function Land(name){
+            Transport.apply(this, arguments);
+            let parentAbout = this.about;
+            this.about = function(){
+                parentAbout.call(this);
+                alert('Я - еду!');
+            }
+        }
+
+        let array = [new Air('Ракета'), new Air('Самолет'), new Water('Теплоход'), new Water('Катер'), new Land('Автомобиль'), new Land('Грузовик')];
+
+        for (var i = 0; i < array.length; i++) array[i].about();
+    </script>
+</body>
+</html>
