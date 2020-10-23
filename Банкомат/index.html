@@ -12,20 +12,30 @@
             this.name = 'John';
             this.surname = 'Pilton';
             this.code = code;
-            this.account = '1000';
+            this.account = 1000;
             this.bank = 'PrivatBank';
         };
 
         let atm = {
             number: '1',
+            discard(c,money){
+                if (this.check(c)){
+                    alert(c.account);
+                    c.account -= money;
+                    alert(c.account);
+            }
+            },
             check(card){
-                alert(bank.some((element) => element.number == card.number && element.code == card.code));
+                let res = bank.some((element) => element.number == card.number && element.code == card.code);
+                alert(res);
+                return res;
             }
         };
 
         let card = new Card('5674 3094 2783 1285', '0000'), bank = [new Card('4593 5483 3403 2904','1111'), new Card('5674 3094 2783 1285','0000'), new Card('5674 3094 2783 1285','0000')];
 
         atm.check(card);
+        atm.discard(card, 100);
     </script>
 </body>
 </html>

@@ -23,10 +23,13 @@
             drive() {
                 if (this.started) {
                     if (this.fuel > 0){
-                        this.fuel--;
                         alert('Бип!');
+                        this.fuel--;
                     }
-                    else alert('Надо подзаправится!');
+                    else {
+                        alert('Надо подзаправится!');
+                        this.stop();
+                    }
                 } 
                 else alert("Сначала запустите двигатель!");
             },
@@ -44,8 +47,12 @@
         fiat.drive();
         fiat.start();
         fiat.drive();
-        fiat.addFuel(1);
+        fiat.addFuel(2);
+        fiat.start();
         fiat.drive();
+        fiat.drive();
+        fiat.drive();
+        fiat.addFuel(1);
         fiat.drive();
     </script>
 </body>

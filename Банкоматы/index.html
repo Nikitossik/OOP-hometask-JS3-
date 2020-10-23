@@ -12,14 +12,23 @@
             this.name = 'John';
             this.surname = 'Pilton';
             this.code = code;
-            this.account = '1000';
+            this.account = 1000;
             this.bank = 'PrivatBank';
         };
 
         function CashMachine(number){
             this.number = number;
+            this.discard = function(c,money){
+                if (this.check(c)){
+                    alert(c.account);
+                    c.account -= money;
+                    alert(c.account);
+                }
+            };
             this.check = function(card){
-                alert(bank.some((element) => element.number == card.number && element.code == card.code));
+                var res = bank.some((element) => element.number == card.number && element.code == card.code);
+                alert(res);
+                return res;
             }
         }
 
@@ -29,9 +38,9 @@
         let machines = [new CashMachine(1), new CashMachine(2)];
 
         machines[0].check(card);
+        machines[0].discard(card, 100);
         machines[1].check(card);
-
-
+        machines[1].discard(card, 200);
 
     </script>
 </body>
