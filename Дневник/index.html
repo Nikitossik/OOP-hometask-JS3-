@@ -37,10 +37,15 @@
             }
             this.filterByWeekendDate = function(){
                 let arr = this.diary.filter((elem) => {
-                    var date = new Date(Date.parse(elem.date));
-                    return date.getDay() == 0 || date.getDay() == 6;
+                    var d = new Date(Date.parse(elem.date));
+                    return d.getDay() == 0 || d.getDay() == 6;
                 });
                 alert('Записи, которые сделаны на выходных : \n' + arr);
+
+                // for(var i = 0; i < this.diary.length; i++) {
+                //     var d = new Date(Date.parse(this.diary[i].date));
+                //     if (d.getDay() == 0 || d.getDay() == 6) alert(d.getDay());
+                // }
             }
         }
 
