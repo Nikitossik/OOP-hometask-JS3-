@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дневник</title>
+</head>
+<body>
+    <script>
+        function Record(date, record){
+            this.date = date;
+            this.record = record;
+            this.showRecord = function(){
+                alert(this.date + ' ' + this.record);
+            }
+            this.toString = function(){
+                var str = '';
+                for (var i in this) if (typeof this[i] !== 'function') str+= `${i}: ${this[i]}\n`;
+                return str;
+            }
+        }
+
+        function Diary(){
+            this.diary = [];
+            this.showDiary = function(){
+                this.diary.forEach((elem, index) => {alert('Запись №' + (index + 1) + '\n ' + elem)})
+            }
+            this.addRecord = function(){
+                let date = prompt('Дата: '), record = prompt('Запись: ');
+                this.diary.push(new Record(date, record));
+            }
+            this.filterByWord = function(word){
+                let arr = this.diary.filter((elem) => {
+                    return elem.record.includes(word);              
+                });
+                alert('Записи, которые содержат ' + word + ': \n' + arr);
+            }
+            this.filterByWeekendDate = function(){
+                let arr = this.diary.filter((elem) => {
+                    var date = new Date(Date.parse(elem.date))
+                    return (date.getDay() == 0 || date.getDay() == 6);
+                });
+                alert('Записи, которые сделаны на выходных : \n' + arr);
+            }
+        }
+
+        let d = new Diary();
+
+        d.addRecord();
+        d.addRecord();
+        d.showDiary();
+        d.filterByWord('Нормас');
+        d.filterByWeekendDate();
+
+    </script>
+</body>
+</html>
