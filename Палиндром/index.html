@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Палиндром</title>
+</head>
+<body>
+    <script>
+        let arr = [
+            "А роза упала на лапу Азора",
+            "Ого",
+            "А Собака боса",
+            "Привет, мир",
+            "А Собака боса",
+            "Лёша на полке клопа нашёл",
+            "Я — арка края",
+        ];
+
+        function removeSpaces(str){
+            var parts = str.toLowerCase().split(/[ \t\v\r\n\f—_,\.]/gi);
+            parts.forEach(element => {
+                element.trim();
+            });
+            return parts.join('');
+        }
+
+        let result = arr.filter((item) => {
+            return (removeSpaces(item) == removeSpaces(item).split('').reverse().join(''));
+        });
+
+        result.forEach((item) => {document.write(`${item} <br>`)});
+    </script>
+</body>
+</html>
