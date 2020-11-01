@@ -37,8 +37,8 @@
             }
             this.filterByWeekendDate = function(){
                 let arr = this.diary.filter((elem) => {
-                    var date = new Date(Date.parse(elem.date))
-                    return (date.getDay() == 0 || date.getDay() == 6);
+                    var date = new Date(Date.parse(elem.date));
+                    return date.getDay() == 0 || date.getDay() == 6;
                 });
                 alert('Записи, которые сделаны на выходных : \n' + arr);
             }
